@@ -1,18 +1,17 @@
 *** Settings ***
 Library    DatabaseLibrary
 Library    OperatingSystem
-Resource    ../resources/setup_test.resource
+Resource    ../../resources/setup_test.resource
 
 Suite Setup         SetupTest
 Suite Teardown      Disconnect From Database
 
 
-
-*** Variables ***
-#
-
 *** Test Cases ***
 Insertar data en tabla persona
-    ${output}   Execute sql script  insert into persona values('Yese','Londoño',300)
+    ${output} =  Execute SQL String  INSERT INTO persona VALUES('Yese','Londoño',600)
     log to console  ${output}
-    should be equals as strings   ${output}    None
+    should be equal as strings   ${output}    None
+
+Check If Exists In DB - Victor Florez
+   Check If Exists In Database    SELECT * FROM persona WHERE nombre = 'Victor';    

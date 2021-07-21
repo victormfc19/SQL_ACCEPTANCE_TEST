@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.3 (Python 3.8.10 on win32)" generated="20210718 11:02:40.527" rpa="false" schemaversion="2">
+<suite id="s1" name="Estructura &amp; Tablas">
+<suite id="s1-s1" name="Estructura" source="C:\Users\EQ01\Desktop\RobotFrameowrk\SQL_ACCEPTANCE_TEST\test_cases\estructura">
+<suite id="s1-s1-s1" name="Tablas" source="C:\Users\EQ01\Desktop\RobotFrameowrk\SQL_ACCEPTANCE_TEST\test_cases\estructura\tablas.robot">
+<kw name="SetupTest" library="setup_test" type="SETUP">
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${environment}' == 'local'</arg>
+<arg>Connect to database local</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Connect to database local" library="connection_database_local">
+<kw name="Get Library Instance" library="BuiltIn">
+<var>${lib}</var>
+<arg>configure</arg>
+<doc>Returns the currently active instance of the specified test library.</doc>
+<msg timestamp="20210718 11:02:40.591" level="INFO">${lib} = &lt;module 'configure' from 'C:\\Users\\EQ01\\Desktop\\RobotFrameowrk\\SQL_ACCEPTANCE_TEST\\resources\\configure.py'&gt;</msg>
+<status status="PASS" starttime="20210718 11:02:40.590" endtime="20210718 11:02:40.591"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>-----##LIB##---${lib}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210718 11:02:40.591" endtime="20210718 11:02:40.591"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<var>${config}</var>
+<arg>${lib}</arg>
+<arg>get_variables</arg>
+<arg>local</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<msg timestamp="20210718 11:02:40.592" level="INFO">${config} = {'dbconfig': DBCONFIG(user='postgres', pwd='admin')}</msg>
+<status status="PASS" starttime="20210718 11:02:40.591" endtime="20210718 11:02:40.593"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>-----##CONFIG##---${config}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210718 11:02:40.593" endtime="20210718 11:02:40.593"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${DBUser}</var>
+<arg>${config['dbconfig'].user}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210718 11:02:40.594" level="INFO">${DBUser} = postgres</msg>
+<status status="PASS" starttime="20210718 11:02:40.593" endtime="20210718 11:02:40.594"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${DBPass}</var>
+<arg>${config['dbconfig'].pwd}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210718 11:02:40.595" level="INFO">${DBPass} = admin</msg>
+<status status="PASS" starttime="20210718 11:02:40.594" endtime="20210718 11:02:40.595"/>
+</kw>
+<kw name="Connect To Database" library="DatabaseLibrary">
+<var>${output}</var>
+<var>${output}</var>
+<arg>psycopg2</arg>
+<arg>${DBName}</arg>
+<arg>${DBUser}</arg>
+<arg>${DBPass}</arg>
+<arg>${DBHost}</arg>
+<arg>${DBPort}</arg>
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
+connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
+<msg timestamp="20210718 11:02:40.614" level="INFO">Connecting using : psycopg2.connect(database=practice01, user=postgres, password=admin, host=localhost, port=5432) </msg>
+<msg timestamp="20210718 11:02:40.678" level="INFO">${output} = None</msg>
+<msg timestamp="20210718 11:02:40.678" level="INFO">${output} = None</msg>
+<status status="PASS" starttime="20210718 11:02:40.595" endtime="20210718 11:02:40.678"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${output}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210718 11:02:40.678" endtime="20210718 11:02:40.679"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.590" endtime="20210718 11:02:40.679"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.590" endtime="20210718 11:02:40.679"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.589" endtime="20210718 11:02:40.679"/>
+</kw>
+<test id="s1-s1-s1-t1" name="Validar que existe la tabla persona">
+<kw name="Table Must Exist" library="DatabaseLibrary">
+<arg>persona</arg>
+<doc>Check if the table given exists in the database. Set optional input `sansTran` to True to run command without an
+explicit transaction commit or rollback.</doc>
+<msg timestamp="20210718 11:02:40.680" level="INFO">Executing : Table Must Exist  |  persona </msg>
+<msg timestamp="20210718 11:02:40.680" level="INFO">Executing : Row Count  |  SELECT * FROM information_schema.tables WHERE table_name='persona' </msg>
+<status status="PASS" starttime="20210718 11:02:40.680" endtime="20210718 11:02:40.685"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.679" endtime="20210718 11:02:40.686"/>
+</test>
+<kw name="Disconnect From Database" library="DatabaseLibrary" type="TEARDOWN">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20210718 11:02:40.688" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" starttime="20210718 11:02:40.688" endtime="20210718 11:02:40.689"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.548" endtime="20210718 11:02:40.689"/>
+</suite>
+<status status="PASS" starttime="20210718 11:02:40.546" endtime="20210718 11:02:40.692"/>
+</suite>
+<suite id="s1-s2" name="Tablas" source="C:\Users\EQ01\Desktop\RobotFrameowrk\SQL_ACCEPTANCE_TEST\test_cases\estructura\tablas.robot">
+<kw name="SetupTest" library="setup_test" type="SETUP">
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${environment}' == 'local'</arg>
+<arg>Connect to database local</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Connect to database local" library="connection_database_local">
+<kw name="Get Library Instance" library="BuiltIn">
+<var>${lib}</var>
+<arg>configure</arg>
+<doc>Returns the currently active instance of the specified test library.</doc>
+<msg timestamp="20210718 11:02:40.703" level="INFO">${lib} = &lt;module 'configure' from 'C:\\Users\\EQ01\\Desktop\\RobotFrameowrk\\SQL_ACCEPTANCE_TEST\\resources\\configure.py'&gt;</msg>
+<status status="PASS" starttime="20210718 11:02:40.703" endtime="20210718 11:02:40.703"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>-----##LIB##---${lib}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210718 11:02:40.703" endtime="20210718 11:02:40.704"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<var>${config}</var>
+<arg>${lib}</arg>
+<arg>get_variables</arg>
+<arg>local</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<msg timestamp="20210718 11:02:40.705" level="INFO">${config} = {'dbconfig': DBCONFIG(user='postgres', pwd='admin')}</msg>
+<status status="PASS" starttime="20210718 11:02:40.704" endtime="20210718 11:02:40.705"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>-----##CONFIG##---${config}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210718 11:02:40.705" endtime="20210718 11:02:40.706"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${DBUser}</var>
+<arg>${config['dbconfig'].user}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210718 11:02:40.707" level="INFO">${DBUser} = postgres</msg>
+<status status="PASS" starttime="20210718 11:02:40.706" endtime="20210718 11:02:40.707"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${DBPass}</var>
+<arg>${config['dbconfig'].pwd}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210718 11:02:40.708" level="INFO">${DBPass} = admin</msg>
+<status status="PASS" starttime="20210718 11:02:40.707" endtime="20210718 11:02:40.708"/>
+</kw>
+<kw name="Connect To Database" library="DatabaseLibrary">
+<var>${output}</var>
+<var>${output}</var>
+<arg>psycopg2</arg>
+<arg>${DBName}</arg>
+<arg>${DBUser}</arg>
+<arg>${DBPass}</arg>
+<arg>${DBHost}</arg>
+<arg>${DBPort}</arg>
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to
+connect to the database using `dbName`, `dbUsername`, and `dbPassword`.</doc>
+<msg timestamp="20210718 11:02:40.709" level="INFO">Connecting using : psycopg2.connect(database=practice01, user=postgres, password=admin, host=localhost, port=5432) </msg>
+<msg timestamp="20210718 11:02:40.782" level="INFO">${output} = None</msg>
+<msg timestamp="20210718 11:02:40.782" level="INFO">${output} = None</msg>
+<status status="PASS" starttime="20210718 11:02:40.708" endtime="20210718 11:02:40.782"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${output}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210718 11:02:40.783" endtime="20210718 11:02:40.783"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.702" endtime="20210718 11:02:40.784"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.702" endtime="20210718 11:02:40.784"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.702" endtime="20210718 11:02:40.784"/>
+</kw>
+<test id="s1-s2-t1" name="Validar que existe la tabla persona">
+<kw name="Table Must Exist" library="DatabaseLibrary">
+<arg>persona</arg>
+<doc>Check if the table given exists in the database. Set optional input `sansTran` to True to run command without an
+explicit transaction commit or rollback.</doc>
+<msg timestamp="20210718 11:02:40.786" level="INFO">Executing : Table Must Exist  |  persona </msg>
+<msg timestamp="20210718 11:02:40.786" level="INFO">Executing : Row Count  |  SELECT * FROM information_schema.tables WHERE table_name='persona' </msg>
+<status status="PASS" starttime="20210718 11:02:40.786" endtime="20210718 11:02:40.792"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.785" endtime="20210718 11:02:40.793"/>
+</test>
+<kw name="Disconnect From Database" library="DatabaseLibrary" type="TEARDOWN">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20210718 11:02:40.796" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" starttime="20210718 11:02:40.796" endtime="20210718 11:02:40.796"/>
+</kw>
+<status status="PASS" starttime="20210718 11:02:40.694" endtime="20210718 11:02:40.796"/>
+</suite>
+<status status="PASS" starttime="20210718 11:02:40.528" endtime="20210718 11:02:40.800"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Estructura &amp; Tablas">Estructura &amp; Tablas</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Estructura">Estructura &amp; Tablas.Estructura</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1" name="Tablas">Estructura &amp; Tablas.Estructura.Tablas</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s2" name="Tablas">Estructura &amp; Tablas.Tablas</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

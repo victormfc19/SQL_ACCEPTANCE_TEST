@@ -18,5 +18,4 @@ Connect to database local
     ${DBPass}=        Set variable   ${config['dbconfig'].pwd}
     ${output}       ${output}    Connect To Database     psycopg2     ${DBName}       ${DBUser}       ${DBPass}       ${DBHost}       ${DBPort}
     log to console  ${output}
-    should be equals as string   ${output}    None
     [Return]    ${output}

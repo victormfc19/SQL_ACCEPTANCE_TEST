@@ -1,10 +1,11 @@
-| *** Settings ***   |
-| Resource           | ../resources/connection_database_loca.resource
+| *** Settings ***    |
+| Resource            | ../resources/connection_database_local.resource
 
-| *** Variables ***  |
-${enviroment}
+
+| *** Variables ***   |
+| ${environment}      | 
 
 
 *** Keywords ***
 SetupTest
-    Run Keyword IF      '${enviroment}' == 'local'          Connect to database local
+    Run Keyword IF      '${environment}' == 'local'          Connect to database local
